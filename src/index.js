@@ -10,19 +10,23 @@ let weatherServices = new WeatherServices();
 weatherServices.createWeather(cityName).then((resolve) => console.log(resolve));
 
 
-const search = document.getElementById('search');
 const mainField = document.getElementById('main-field');
+const searchButton = document.getElementById('search-button');
+const searchInput = document.getElementById('search-input')
 
+searchInput.addEventListener('keyup', (event) => {
+    if (event.code === "Enter") {
+        event.preventDefault();
+        searchButton.click();
+    }
+});
 
-search.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const searchData = new FormData(event.target);
-    const city = searchData.get('city');
-    weatherServices.createWeather(city)
+searchButton.addEventListener('click', () => {
+    const inputValue = searchInput.value;
+    weatherServices.createWeather(inputValue)
         .then((data) => {
             displayData(data, mainField);
-            console.log(data);
-        });
+        })
 })
 
 
