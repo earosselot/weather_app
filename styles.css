@@ -1,0 +1,26 @@
+#temperature {
+    /*padding-bottom:*/
+}
+
+#temperature-text {
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: -5px;
+}
+
+#kronos-logo {
+    height: 60px;
+}
+
+.navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.input-group {
+    width: auto!important;
+}
+
+#temp-card-image {
+    width: 200px;
+}
