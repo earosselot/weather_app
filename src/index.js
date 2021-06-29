@@ -1,19 +1,37 @@
 import {WeatherServices} from "./weather";
 
-// const APIkey = '652e61acc78edad67e8910709ea3d274';
-// let cityName1 = 'Mendoza';
-// Weather(APIkey, cityName1).then((resolve) => console.log(resolve));
-
-
-let cityName = 'Neuquen';
 let weatherServices = new WeatherServices();
-weatherServices.createWeather(cityName).then((resolve) => console.log(resolve));
+
+//Check if browser supports W3C Geolocation API
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+}
+
+//Get latitude and longitude;
+function successFunction(position) {
+    let params = {};
+    params['lat'] = position.coords.latitude;
+    params['long'] = position.coords.longitude;
+    weatherServices.createWeather(params)
+        .then((weather) => {
+            displayData(weather);
+        })
+}
+
+function errorFunction() {
+    let params = {};
+    params['cityName'] = 'Montevideo';
+    weatherServices.createWeather(params)
+        .then((weather) => {
+            displayData(weather);
+        })
+}
 
 
-const mainField = document.getElementById('main-field');
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input')
 
+// Enter key behaves as click on search button
 searchInput.addEventListener('keyup', (event) => {
     if (event.code === "Enter") {
         event.preventDefault();
@@ -21,62 +39,46 @@ searchInput.addEventListener('keyup', (event) => {
     }
 });
 
+// Search request
 searchButton.addEventListener('click', () => {
-    const inputValue = searchInput.value;
-    weatherServices.createWeather(inputValue)
-        .then((data) => {
-            displayData(data, mainField);
+    let params = {};
+    params['cityName'] = searchInput.value;
+    weatherServices.createWeather(params)
+        .then((weather) => {
+            displayData(weather);
         })
 })
 
 
 // Erases previous data on the App and renders the new data
-function displayData (data, field) {
-    field.innerHTML = '';
-    displayField(data.temp, field);
+function displayData (data) {
+
+    const tempField = document.getElementById('temperature-text');
+    const weatherField = document.getElementById('weather-text');
+    const tempCardImage = document.getElementById('temp-card-image');
+
+    tempField.innerText = '';
+    tempField.innerText = Math.round(data.temp) + '°';
+
+    weatherField.innerText = '';
+    weatherField.innerText = data.weather;
+
+    tempCardImage.setAttribute('src', `../design/SVG/${data.icon}.svg`);
 }
 
-
-// Creates a div element and displays data within DOMelement
-function displayField (fieldData, DOMelement) {
-    const field = document.createElement('div');
-    field.textContent = fieldData;
-    DOMelement.appendChild(field);
+function renderWeatherImage(weather, element) {
+    // TODO: complete al possible weather conditions and symbols
+    let symbol;
+    switch (weather) {
+        case 'Clear':
+            symbol = 'fa-sun';
+            break;
+        case 'Clouds':
+            symbol = 'fa-cloud';
+            break;
+        default:
+            symbol = 'fa-lightbulb'
+    }
+    element.classList.add(symbol);
 }
-
-
-const DisplayControl = (() => {
-    return {}
-})();
-
-// Weather function hits the weather api with the parameters passed and returns an object with fields used by the App
-// async function Weather(APIkey, cityName, units = 'metric') {
-//     let rawData = await fetch(
-//         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=${units}`,
-//         {mode: 'cors'});
-//     let data = await rawData.json();
-//     return GetData(data);
-// }
-
-
-// Get data takes the weather json in and returns an object with only the data required by the app
-// function GetData(json) {
-//     let obj = {};
-//     obj['weather'] = json.weather[0].main;
-//     obj['description'] = json.weather[0].description;
-//     obj['temp'] = json.main.temp;
-//     obj['feelsLike'] = json.main.feels_like;
-//     // json.main.temp_min
-//     // json.main.temp_max
-//     // json.main.pressure
-//     // json.main.humidity
-//     // json.clouds.all  // % of clouds
-//     obj['city'] = json.name;  // city name
-//     // json.sys.country  // country code 'AR', 'GB', 'JP', etc...
-//     // json.sys.sunrise  // sunrise time, unix, UTC
-//     // json.sys.sunset // sunset time, unix, UTC
-//     // json.timezone  // shift in seconds form UTC
-//     return obj;
-// }
-
 
