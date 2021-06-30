@@ -35,15 +35,19 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col d-flex flex-column align-items-center" id="temp-card">
-			<div id="city-name"></div>
-			<div><img src="" alt="weather-condition" id="temp-card-image"></div>
-			<div id="temp-card-body">
-				<div id="temperature"><h1 id="temperature-text"></h1></div>
-			  	<div><h4 id="feels-like"></h4></div>
-				<div id="weather"><h3 id="weather-text"></h3></div>
+		<div class="col d-flex flex-column align-items-center">
+			<div class="spinner-border" role="status" style="display: none" id="temp-card-spinner">
+			  <span class="sr-only">Loading...</span>
 			</div>
-
+		  	<div id="temp-card">
+				<div id="city-name"></div>
+				<div><img src="" alt="weather-condition" id="temp-card-image"></div>
+				<div id="temp-card-body">
+				  <div id="temperature"><h1 id="temperature-text"></h1></div>
+				  <div><h4 id="feels-like"></h4></div>
+				  <div id="weather"><h3 id="weather-text"></h3></div>
+				</div>
+			</div>
 		</div>
 	</div>
 
