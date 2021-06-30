@@ -66,19 +66,3 @@ function displayData (data) {
     tempCardImage.setAttribute('src', `/design/SVG/${data.icon}.svg`);
 }
 
-function renderWeatherImage(weather, element) {
-    // TODO: complete al possible weather conditions and symbols
-    let symbol;
-    switch (weather) {
-        case 'Clear':
-            symbol = 'fa-sun';
-            break;
-        case 'Clouds':
-            symbol = 'fa-cloud';
-            break;
-        default:
-            symbol = 'fa-lightbulb'
-    }
-    element.classList.add(symbol);
-}
-
