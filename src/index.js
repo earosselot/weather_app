@@ -28,7 +28,6 @@ function errorFunction() {
         })
 }
 
-
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input')
 
@@ -40,14 +39,30 @@ searchInput.addEventListener('keyup', (event) => {
     }
 });
 
-// Search request
-searchButton.addEventListener('click', () => {
+// Search city request
+// TODO: hacer esta funcion con async-await para meterle el spinner
+// https://stackoverflow.com/questions/58820229/how-to-show-loading-icon-till-await-finishes
+// searchButton.addEventListener('click', () => {
+//     let params = {};
+//     params['cityName'] = searchInput.value;
+//     const tempCardSpinner = document.getElementById('temp-card-spinner');
+//     weatherServices.createWeather(params)
+//         .then((weather) => {
+//             tempCardSpinner.style.display = 'block';
+//             displayData(weather);
+//             tempCardSpinner.style.display = 'none';
+//         })
+// })
+
+
+searchButton.addEventListener('click', async () => {
+    const tempCardSpinner = document.getElementById('temp-card-spinner');
     let params = {};
     params['cityName'] = searchInput.value;
-    weatherServices.createWeather(params)
-        .then((weather) => {
-            displayData(weather);
-        })
+    tempCardSpinner.style.display = 'block';
+    let weather = await weatherServices.createWeather(params);
+    tempCardSpinner.style.display = 'none';
+    displayData(weather);
 })
 
 
@@ -72,6 +87,6 @@ function displayData (data) {
     cityNameField.innerText = `${data.city} (${data.country})`;
 
     feelsLikeField.innerText = '';
-    feelsLikeField.innerText = `Feels like ${data.feelsLike}°C`;
+    feelsLikeField.innerText = `Feels like ${Math.round(data.feelsLike)}°C`;
 }
 
