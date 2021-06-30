@@ -1,15 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="452.738px" height="512px" viewBox="-2.818 0 452.738 512" enable-background="new -2.818 0 452.738 512"
-	 xml:space="preserve">
-<path d="M232.104,131.821c58.002,0,108.904,41.126,121.051,97.793l2.72,12.671l12.931,0.801
-	c35.903,2.236,64.033,32.143,64.033,68.088c0,37.557-30.458,68.137-67.973,68.338c-0.392-0.025-0.774-0.049-1.167-0.059
-	l-17.451-0.309v0.367H104.185l-4.938-0.025c-46.857-0.233-84.98-38.549-84.98-85.404c0-47.101,38.314-85.424,85.414-85.424
-	c1.493,0,2.961,0.118,4.43,0.218l1.276,0.091l11.245,0.742l5.106-10.044C143.034,157.814,185.32,131.821,232.104,131.821
-	 M232.104,114.736c-54.867,0-102.309,31.416-125.59,77.181c-2.27-0.151-4.529-0.342-6.832-0.342
-	c-56.609,0-102.499,45.89-102.499,102.508c0,56.44,45.614,102.205,101.981,102.489v0.024H363.33v-0.059
-	c0.393,0.008,0.776,0.059,1.169,0.059c47.164,0,85.421-38.239,85.421-85.423c0-45.363-35.403-82.362-80.058-85.14
-	C356.231,162.436,299.757,114.736,232.104,114.736L232.104,114.736z"/>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="452.73801"
+   height="452.737"
+   viewBox="-2.818 0 452.738 452.737"
+   enable-background="new -2.818 0 452.738 512"
+   xml:space="preserve"
+   sodipodi:docname="03d.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"><metadata
+   id="metadata9"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs7" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1017"
+   id="namedview5"
+   showgrid="false"
+   inkscape:zoom="1.3476562"
+   inkscape:cx="226.369"
+   inkscape:cy="256"
+   inkscape:window-x="1912"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1"
+   inkscape:document-rotation="0" />
+<path
+   d="m 232.104,102.5235 c 58.002,0 108.904,41.126 121.051,97.793 l 2.72,12.671 12.931,0.801 c 35.903,2.236 64.033,32.143 64.033,68.088 0,37.557 -30.458,68.137 -67.973,68.338 -0.392,-0.025 -0.774,-0.049 -1.167,-0.059 l -17.451,-0.309 v 0.367 H 104.185 l -4.938,-0.025 c -46.857,-0.233 -84.98,-38.549 -84.98,-85.404 0,-47.101 38.314,-85.424 85.414,-85.424 1.493,0 2.961,0.118 4.43,0.218 l 1.276,0.091 11.245,0.742 5.106,-10.044 c 21.296,-41.851 63.582,-67.844 110.366,-67.844 m 0,-17.085 c -54.867,0 -102.309,31.416 -125.59,77.181 -2.27,-0.151 -4.529,-0.342 -6.832,-0.342 -56.609,0 -102.499,45.89 -102.499,102.508 0,56.44 45.614,102.205 101.981,102.489 v 0.024 H 363.33 v -0.059 c 0.393,0.008 0.776,0.059 1.169,0.059 47.164,0 85.421,-38.239 85.421,-85.423 0,-45.363 -35.403,-82.362 -80.058,-85.14 -13.631,-63.597 -70.105,-111.297 -137.758,-111.297 z"
+   id="path2"
+   style="stroke-width:1" />
+<rect
+   style="opacity:0.944563;fill:none;stroke-width:2.04177;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.2;stroke-opacity:0.843137;paint-order:stroke fill markers;stop-color:#000000"
+   id="rect11"
+   width="452.737"
+   height="452.737"
+   x="-2.8169997"
+   y="29.297501" /></svg>
