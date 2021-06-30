@@ -1,5 +1,6 @@
 import {WeatherServices} from "./weather";
 
+// TODO: agregar loading mientras carga la API
 let weatherServices = new WeatherServices();
 
 //Check if browser supports W3C Geolocation API
@@ -56,13 +57,21 @@ function displayData (data) {
     const tempField = document.getElementById('temperature-text');
     const weatherField = document.getElementById('weather-text');
     const tempCardImage = document.getElementById('temp-card-image');
+    const cityNameField = document.getElementById('city-name');
+    const feelsLikeField = document.getElementById('feels-like');
 
     tempField.innerText = '';
-    tempField.innerText = Math.round(data.temp) + '°';
+    tempField.innerText = Math.round(data.temp) + '°C';
 
     weatherField.innerText = '';
     weatherField.innerText = data.weather;
 
     tempCardImage.setAttribute('src', `design/SVG/${data.icon}.svg`);
+
+    cityNameField.innerText = '';
+    cityNameField.innerText = `${data.city} (${data.country})`;
+
+    feelsLikeField.innerText = '';
+    feelsLikeField.innerText = `Feels like ${data.feelsLike}°C`;
 }
 

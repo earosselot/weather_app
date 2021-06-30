@@ -3,7 +3,14 @@ class WeatherServices {
 
     async createWeather(cityName) {
         let data = await this.fetchAPI(cityName);
-        let weather = new Weather(data.name, data.weather[0].main, data.weather[0].description, data.weather[0].icon, data.main.temp, data.main.feels_like);
+        let weather = new Weather(
+            data.name,
+            data.weather[0].main,
+            data.weather[0].description,
+            data.weather[0].icon,
+            data.main.temp,
+            data.main.feels_like,
+            data.sys.country);
         return weather
     };
 
@@ -27,6 +34,7 @@ class WeatherServices {
                     `https://api.openweathermap.org/data/2.5/weather?lat=${params.lat}&lon=${params.long}&appid=${APIkey}&units=${units}`,
                     {mode: 'cors'});
                 let json = await rawData.json();
+                console.log(json);
                 return json;
             } catch (error) {
                 console.log('error: ')
@@ -60,17 +68,15 @@ class WeatherServices {
 
 
 class Weather {
-
-    constructor(_city, _weather, _description, _icon, _temp, _feelsLike) {
+    constructor(_city, _weather, _description, _icon, _temp, _feelsLike, _country) {
         this.city = _city;
         this.weather = _weather;
         this.description = _description;
         this.icon = _icon;
         this.temp = _temp;
         this.feelsLike = _feelsLike;
+        this.country = _country;
     }
-
 }
-
 
 export { WeatherServices }

@@ -19,7 +19,6 @@
 </head>
 <body>
 <div class="navbar flex-column flex-sm-row">
-
 	   <a class="navbar-brand" href="https://earosselot.github.io/weather_app/">
 		  <img src="design/kronos_logo_web.svg" alt="Kronos logo" id="kronos-logo">
 	   </a>
@@ -32,17 +31,17 @@
 			<i class="fas fa-search"></i>
 		  </button>
 	   </div>
-
 </div>
 
 <div class="container">
 	<div class="row">
 		<div class="col d-flex flex-column align-items-center" id="temp-card">
-
+			<div id="city-name"></div>
 			<div><img src="" alt="weather-condition" id="temp-card-image"></div>
 			<div id="temp-card-body">
-				<div id="temperature"><h1 id="temperature-text">8°</h1></div>
-				<div id="weather"><h3 id="weather-text">Clear</h3></div>
+				<div id="temperature"><h1 id="temperature-text"></h1></div>
+			  	<div><h4 id="feels-like"></h4></div>
+				<div id="weather"><h3 id="weather-text"></h3></div>
 			</div>
 
 		</div>

@@ -2,10 +2,20 @@
     /*padding-bottom:*/
 }
 
+#temp-card {
+    text-align: center;
+}
+
+#city-name {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
 #temperature-text {
     text-align: center;
     font-size: 60px;
-    margin-bottom: -5px;
+    margin-bottom: 0px;
 }
 
 #kronos-logo {
@@ -22,5 +32,5 @@
 }
 
 #temp-card-image {
-    width: 200px;
+    width: 120px;
 }
