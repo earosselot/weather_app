@@ -63,6 +63,6 @@ function displayData (data) {
     weatherField.innerText = '';
     weatherField.innerText = data.weather;
 
-    tempCardImage.setAttribute('src', `/design/SVG/${data.icon}.svg`);
+    tempCardImage.setAttribute('src', `design/SVG/${data.icon}.svg`);
 }
 
