@@ -1,31 +1,25 @@
 import {WeatherServices} from "./weather";
 
-// TODO: agregar loading mientras carga la API
 let weatherServices = new WeatherServices();
 
 //Check if browser supports W3C Geolocation API
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+    navigator.geolocation.getCurrentPosition(geolocationWeather, defaultWeather);
 }
 
 //Get latitude and longitude;
-function successFunction(position) {
+function geolocationWeather(position) {
     let params = {};
     params['lat'] = position.coords.latitude;
     params['long'] = position.coords.longitude;
-    weatherServices.createWeather(params)
-        .then((weather) => {
-            displayData(weather);
-        })
+    updateWeather(params);
 }
 
-function errorFunction() {
+//Default city if user denies geolocation
+function defaultWeather() {
     let params = {};
     params['cityName'] = 'Montevideo';
-    weatherServices.createWeather(params)
-        .then((weather) => {
-            displayData(weather);
-        })
+    updateWeather(params);
 }
 
 const searchButton = document.getElementById('search-button');
@@ -39,36 +33,38 @@ searchInput.addEventListener('keyup', (event) => {
     }
 });
 
-// Search city request
-// TODO: hacer esta funcion con async-await para meterle el spinner
-// https://stackoverflow.com/questions/58820229/how-to-show-loading-icon-till-await-finishes
-// searchButton.addEventListener('click', () => {
-//     let params = {};
-//     params['cityName'] = searchInput.value;
-//     const tempCardSpinner = document.getElementById('temp-card-spinner');
-//     weatherServices.createWeather(params)
-//         .then((weather) => {
-//             tempCardSpinner.style.display = 'block';
-//             displayData(weather);
-//             tempCardSpinner.style.display = 'none';
-//         })
-// })
+searchButton.addEventListener('click', searchCity);
 
-
-searchButton.addEventListener('click', async () => {
-    const tempCardSpinner = document.getElementById('temp-card-spinner');
+function searchCity() {
     let params = {};
     params['cityName'] = searchInput.value;
-    tempCardSpinner.style.display = 'block';
-    let weather = await weatherServices.createWeather(params);
-    tempCardSpinner.style.display = 'none';
-    displayData(weather);
-})
+    updateWeather(params);
+}
 
+async function updateWeather(params) {
+    const tempCard = document.getElementById('temp-card');
+    showSpinner(tempCard);
+    let weather = await weatherServices.createWeather(params);
+    displayData(weather);
+    hideSpinner(tempCard);
+}
+
+function showSpinner(card) {
+    const cardBody = card.querySelector('[id$="card-body"]');
+    const cardSpinner = card.querySelector('[id$="card-spinner-container"]');
+    cardSpinner.setAttribute('class', 'd-flex align-items-center');
+    cardBody.style.display = 'none';
+}
+
+function hideSpinner(card) {
+    const cardBody = card.querySelector('[id$="card-body"]');
+    const cardSpinner = card.querySelector('[id$="card-spinner-container"]');
+    cardSpinner.setAttribute('class', 'd-none');
+    cardBody.style.display = 'block';
+}
 
 // Erases previous data on the App and renders the new data
 function displayData (data) {
-
     const tempField = document.getElementById('temperature-text');
     const weatherField = document.getElementById('weather-text');
     const tempCardImage = document.getElementById('temp-card-image');

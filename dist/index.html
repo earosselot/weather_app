@@ -36,29 +36,77 @@
 <div class="container">
 	<div class="row">
 		<div class="col d-flex flex-column align-items-center">
-			<div class="spinner-border" role="status" style="display: none" id="temp-card-spinner">
-			  <span class="sr-only">Loading...</span>
-			</div>
-		  	<div id="temp-card">
-				<div id="city-name"></div>
-				<div><img src="" alt="weather-condition" id="temp-card-image"></div>
-				<div id="temp-card-body">
+		  	<div id="temp-card" >
+				<div id="temp-card-spinner-container" class="d-flex align-items-center">
+				  <div class="spinner-grow" role="status" style="width: 60px; height: 60px;"  id="temp-card-spinner">
+					<span class="visually-hidden">Loading...</span>
+				  </div>
+				</div>
+
+				<div id="temp-card-body" class="cards">
+				  <div id="city-name"></div>
+				  <div><img src="" alt="weather-condition" id="temp-card-image"></div>
 				  <div id="temperature"><h1 id="temperature-text"></h1></div>
 				  <div><h4 id="feels-like"></h4></div>
 				  <div id="weather"><h3 id="weather-text"></h3></div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-lg-4 col-6" id="wind-card">
-			<div>
-				<div></div>
+	<div class="row justify-content-around">
+		<div class="col-lg-3 col-8 d-flex flex-column align-items-center cards" id="sun-card">
+		  <div id="sun-card-spinner-container" class="d-none align-items-center">
+			<div class="spinner-grow" role="status" style="width: 60px; height: 60px;"  id="sun-card-spinner">
+			  <span class="visually-hidden">Loading...</span>
 			</div>
+		  </div>
+
+		  <div id="sun-card-body d-flex">
+			<div class="row">
+
+			  <div class="col">
+				<img src="design/SVG/sunrise.svg" alt="weather-condition" id="sunrise-image" class="suntime-image">
+				<h5>sunrise time</h5>
+			  </div>
+			  <div class="col">
+				<img src="design/SVG/sunset.svg" alt="weather-condition" id="sunset-image" class="suntime-image">
+				<h5>sunset time</h5>
+			  </div>
+
+			</div>
+
+
+
+
+
+		  </div>
 		</div>
 
-		<div class="col-lg-4 col-6" id="sun-card">
+		<div class="col-lg-4 col-8 d-flex flex-column align-items-center cards" id="weather-additional-card">
+		  <div id="weather-additional-card-spinner-container" class="d-none">
+			<div class="spinner-grow" role="status" style="width: 60px; height: 60px;"  id="weather-additional-card-spinner">
+			  <span class="visually-hidden">Loading...</span>
+			</div>
+		  </div>
+
+		  <div id="weather-additional-card-body">
+
+		  </div>
+
+		</div>
+
+		<div class="col-lg-3 col-8 d-flex flex-column align-items-center cards" id="wind-card">
+		  <div id="wind-card-spinner-container" class="d-none">
+			<div class="spinner-grow" role="status" style="width: 60px; height: 60px;"  id="wind-card-spinner">
+			  <span class="visually-hidden">Loading...</span>
+			</div>
+		  </div>
+
+		  <div id="wind-card-body">
+
+		  </div>
 
 		</div>
 	</div>
