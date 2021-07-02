@@ -11,7 +11,6 @@
     width: auto!important;
 }
 
-
 #city-name {
     font-size: 25px;
     font-weight: bold;
@@ -30,9 +29,14 @@
 }
 
 #temp-card-spinner-container {
-    height: 365px;
+    height: 335px;
     display: none;
 }
+
+#sun-card-spinner-container, #sun-card-spinner-container, #wind-card-spinner-container {
+    height: 206px;
+}
+
 
 .spinner-grow {
     height: 40px;
@@ -44,7 +48,9 @@
 
 .cards {
     text-align: center;
-    background-color: rgba(206, 154, 78, 0.22);
+    background-color: rgba(78, 6, 213, 0.2);
     padding: 10px;
-    margin: 5px;
+    margin: 15px;
+    border-radius: 25px;
 }
+
