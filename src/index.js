@@ -3,6 +3,7 @@ import { format } from "date-fns";
 
 let weatherServices = new WeatherServices();
 let backgroundColor = {'01d': [232, 196, 12], '01n': [0, 0, 0], '02d': [193, 178, 98], '02n': [85, 83, 78], '03d': [85, 83, 78], '03n': [85, 83, 78], '04d': [85, 83, 78], '04n': [85, 83, 78], '09d': [56, 65, 184], '09n': [56, 65, 184], '10d': [56, 65, 184], '10n': [56, 65, 184], '11d': [78, 6, 213], '11n': [78, 6, 213], '13d': [21, 179, 191], '13n': [21, 179, 191], '50d': [5, 26, 95], '50n': [5, 26, 95]};
+// TODO: hacer andar el boton de °C/°F
 let weather;
 let units = 'metric';
 
