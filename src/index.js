@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 let weatherServices = new WeatherServices();
 let backgroundColor = {'01d': [232, 196, 12], '01n': [0, 0, 0], '02d': [193, 178, 98], '02n': [85, 83, 78], '03d': [85, 83, 78], '03n': [85, 83, 78], '04d': [85, 83, 78], '04n': [85, 83, 78], '09d': [56, 65, 184], '09n': [56, 65, 184], '10d': [56, 65, 184], '10n': [56, 65, 184], '11d': [78, 6, 213], '11n': [78, 6, 213], '13d': [21, 179, 191], '13n': [21, 179, 191], '50d': [5, 26, 95], '50n': [5, 26, 95]};
-// TODO: hacer andar el boton de °C/°F
+
 let weather;
 let units = 'metric';
 
@@ -21,6 +21,7 @@ function geolocationWeather(position) {
     let params = {};
     params['lat'] = position.coords.latitude;
     params['long'] = position.coords.longitude;
+    params['units'] = units;
     updateWeather(params);
 }
 
@@ -28,6 +29,7 @@ function geolocationWeather(position) {
 function defaultWeather() {
     let params = {};
     params['cityName'] = 'Montevideo';
+    params['units'] = units;
     updateWeather(params);
 }
 
@@ -47,6 +49,7 @@ searchButton.addEventListener('click', searchCity);
 function searchCity() {
     let params = {};
     params['cityName'] = searchInput.value;
+    params['units'] = units;
     updateWeather(params);
 }
 
@@ -85,10 +88,10 @@ function hideSpinner(card) {
 
 // Erases previous data on the App and renders the new data
 function displayData (data) {
-   fillTemperatureCard(data);
-   fillSunCard(data);
-   fillAdditionalWeatherCard(data);
-   fillWindCard(data);
+    fillTemperatureCard(data);
+    fillSunCard(data);
+    fillAdditionalWeatherCard(data);
+    fillWindCard(data);
 }
 
 function fillTemperatureCard(data) {
@@ -97,11 +100,11 @@ function fillTemperatureCard(data) {
     const tempCardImage = document.getElementById('temp-card-image');
     const cityNameField = document.getElementById('city-name');
     const feelsLikeField = document.getElementById('feels-like');
-    tempField.innerText = Math.round(data.temp) + '°C';
+    tempField.innerText = Math.round(data.temp) + data.unitSymbol;
     weatherField.innerText = data.weather;
     tempCardImage.setAttribute('src', `design/SVG/${data.icon}.svg`);
     cityNameField.innerText = `${data.city} (${data.country})`;
-    feelsLikeField.innerText = `Feels like ${Math.round(data.feelsLike)}°C`;
+    feelsLikeField.innerText = `Feels like ${Math.round(data.feelsLike)}${data.unitSymbol}`;
 }
 
 function fillSunCard(data) {
@@ -116,8 +119,8 @@ function fillAdditionalWeatherCard(data) {
     const maxTemp = document.getElementById('max-temp');
     const humidity = document.getElementById('humidity');
     const cloudCover = document.getElementById('cloud-text');
-    minTemp.innerText = `Min: ${Math.round(data.temp_min)}°C`;
-    maxTemp.innerText = `Max: ${Math.round(data.temp_max)}°C`;
+    minTemp.innerText = `Min: ${Math.round(data.temp_min)}${data.unitSymbol}`;
+    maxTemp.innerText = `Max: ${Math.round(data.temp_max)}${data.unitSymbol}`;
     humidity.innerText = `Humidity: ${data.humidity}%`;
     cloudCover.innerText = `Cloudiness: ${data.clouds}%`;
 }
@@ -126,15 +129,23 @@ function fillWindCard(data) {
     const windDirectoin = document.getElementById('wind-image');
     const windSpeed = document.getElementById('wind-speed');
     windDirectoin.style.transform = `rotate(${data.windDirection}deg)`;
-    windSpeed.innerText = `Speed: ${data.windSpeed}m/sec`;
+    windSpeed.innerText = `Speed: ${data.windSpeed.toFixed(2)}m/sec`;
 }
 
-// background-color: rgba(232, 196, 12, 0.2); soleado
-// background-color: rgba(0, 0, 0, 0.2); noche
-// background-color: rgba(193, 178, 98, 0.2); parcialmente nublado dia
-// background-color: rgba(78, 6, 213, 0.2); tormenta
-// background-color: rgba(85, 83, 78, 0.2); nublado total / parcialmente noche
-// background-color: rgba(56, 65, 184, 0.2); lluvia
-// background-color: rgba(21, 179, 191, 0.2); nieve
-// background-color: rgba(5, 26, 95, 0.2); niebla
+const toggleUnitsButton = document.getElementById('toggle-units-button');
 
+toggleUnitsButton.addEventListener('click', toggleUnits);
+
+function toggleUnits() {
+    weather.toggleUnits();
+    displayData(weather);
+    toggleButtonContent();
+}
+
+function toggleButtonContent() {
+    if (toggleUnitsButton.innerHTML === '<b>°C</b> / °F') {
+        toggleUnitsButton.innerHTML = '°C / <b>°F</b>';
+    } else {
+        toggleUnitsButton.innerHTML = '<b>°C</b> / °F';
+    }
+}
