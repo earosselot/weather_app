@@ -54,3 +54,6 @@
     border-radius: 25px;
 }
 
+#not-valid-city-alert {
+    display: none;
+}

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Weather App</title>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
 
-	<link href="styles.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-	<script src="https://kit.fontawesome.com/60ffc0732d.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/60ffc0732d.js" crossorigin="anonymous"></script>
 
-	<!--    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">-->
-	<!--    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">-->
+  <!--    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">-->
+  <!--    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">-->
 
-	<script defer src="main.js"></script>
+  <script defer src="main.js"></script>
 </head>
 <body>
 <div class="navbar flex-column flex-sm-row">
   <a class="navbar-brand" href="https://earosselot.github.io/weather_app/">
 	<img src="design/kronos_logo_web.svg" alt="Kronos logo" id="kronos-logo">
   </a>
-  <button type="button" class="btn btn-light"><b>°C</b> / °F</button>
+  <button type="button" class="btn btn-light" id="toggle-units-button"><b>°C</b> / °F</button>
   <div class="input-group">
 	<div class="form-outline">
 	  <input id="search-input" type="search" class="form-control" placeholder="Enter a city..." />
@@ -31,6 +31,11 @@
 	  <i class="fas fa-search"></i>
 	</button>
   </div>
+</div>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert" id="not-valid-city-alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
 <div class="container">
