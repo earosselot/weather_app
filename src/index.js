@@ -66,9 +66,14 @@ async function updateWeather(params) {
         cards.forEach((card) => card.style.backgroundColor = rgba)
         cards.forEach((card) => hideSpinner(card));
     } catch(error) {
+        const notValidCityAlert = document.getElementById('not-valid-city-alert-container');
+        notValidCityAlert.innerHTML = `
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="not-valid-city-alert">
+              <strong>Holy guacamole!</strong> The city is not valid or not in our database. Returning to default city
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>'`;
+        console.log(weather);
         initialWeather();
-        console.log('error: ');
-        console.log(error);
     }
 }
 
@@ -129,7 +134,7 @@ function fillWindCard(data) {
     const windDirectoin = document.getElementById('wind-image');
     const windSpeed = document.getElementById('wind-speed');
     windDirectoin.style.transform = `rotate(${data.windDirection}deg)`;
-    windSpeed.innerText = `Speed: ${data.windSpeed.toFixed(2)}m/sec`;
+    windSpeed.innerText = `Speed: ${data.windSpeed.toFixed(2)}${data.windUnitSymbol}`;
 }
 
 const toggleUnitsButton = document.getElementById('toggle-units-button');

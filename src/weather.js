@@ -25,44 +25,30 @@ class WeatherServices {
                 params.units);
             return weather
         } catch(error) {
-            console.log('error: ');
-            console.log(error);
+            console.log('error createWeather');
         }
-
     };
 
 
     async fetchAPI (params) {
         let APIkey = '652e61acc78edad67e8910709ea3d274';
+        let rawData;
         if (params['cityName']) {
-            try {
-                let rawData = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${params.cityName}&appid=${APIkey}&units=${params.units}`,
-                    {mode: 'cors'});
-                let json = await rawData.json();
-                return json;
-            } catch (error) {
-                console.log('error: ');
-                console.log(error);
-            }
+            rawData = await fetch(
+                `https://api.openweathermap.org/data/2.5/weather?q=${params.cityName}&appid=${APIkey}&units=${params.units}`,
+                {mode: 'cors'});
         } else if (params['lat']) {
-            try {
-                let rawData = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?lat=${params.lat}&lon=${params.long}&appid=${APIkey}&units=${params.units}`,
-                    {mode: 'cors'});
-                let json = await rawData.json();
-                return json;
-            } catch (error) {
-                // TODO: manejar los errores 404, cuando no se ingresa una ciudad válida.
-                console.log('error: ');
-                console.log(error);
-            }
+            rawData = await fetch(
+                `https://api.openweathermap.org/data/2.5/weather?lat=${params.lat}&lon=${params.long}&appid=${APIkey}&units=${params.units}`,
+                {mode: 'cors'});
+
         }
+        let json = await rawData.json();
+        if (json.cod === 200) {
+            return json;
+        }
+        throw json.cod;
     };
-
-    changeUnits(weather, units) {
-
-    }
 }
 
 
@@ -85,7 +71,8 @@ class Weather {
         this.windSpeed = _windSpeed;
         this.windDirection = _windDirection;
         this.units = _units;
-        this.unitSymbol = this.setUnitsSymbol(_units);
+        this.unitSymbol = this.setUnitSymbol(_units);
+        this.windUnitSymbol = this.setWindUnitSymbol(_units);
     }
 
     calculateTimezone(sunrise, timezone) {
@@ -96,13 +83,21 @@ class Weather {
         return new Date(sunriseMs + offset + timezoneMs);
     }
 
-    setUnitsSymbol(units) {
+    setUnitSymbol(units) {
         if (units === 'metric') {
             return '°C';
         } else if (units === 'imperial') {
             return '°F';
         } else {
             return 'invalid units';
+        }
+    }
+
+    setWindUnitSymbol(units) {
+        if (units === 'metric') {
+            return 'm/sec'
+        } else if (units === 'imperial') {
+            return 'mph';
         }
     }
 
@@ -115,6 +110,7 @@ class Weather {
             this.units = 'imperial';
             this.unitSymbol = '°F';
             this.windSpeed = this.velocityToImperial(this.windSpeed);
+            this.windUnitSymbol = 'mph';
         } else if (this.units === 'imperial') {
             this.temp = this.tempToMetric(this.temp);
             this.feelsLike = this.tempToMetric(this.feelsLike);
@@ -123,6 +119,7 @@ class Weather {
             this.units = 'metric';
             this.unitSymbol = '°C';
             this.windSpeed = this.velocityToMetric(this.windSpeed);
+            this.windUnitSymbol = 'm/sec';
         }
     }
 
