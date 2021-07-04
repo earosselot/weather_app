@@ -72,7 +72,6 @@ async function updateWeather(params) {
               <strong>Holy guacamole!</strong> The city is not valid or not in our database. Returning to default city
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>'`;
-        console.log(weather);
         initialWeather();
     }
 }

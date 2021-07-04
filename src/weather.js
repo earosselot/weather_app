@@ -25,7 +25,7 @@ class WeatherServices {
                 params.units);
             return weather
         } catch(error) {
-            console.log('error createWeather');
+            return;
         }
     };
 
@@ -41,7 +41,6 @@ class WeatherServices {
             rawData = await fetch(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${params.lat}&lon=${params.long}&appid=${APIkey}&units=${params.units}`,
                 {mode: 'cors'});
-
         }
         let json = await rawData.json();
         if (json.cod === 200) {
@@ -67,7 +66,6 @@ class Weather {
         this.temp_max = _temp_max;
         this.humidity = _humidity;
         this.clouds = _clouds;
-        // TODO: wind units toggle m/sec -> mph
         this.windSpeed = _windSpeed;
         this.windDirection = _windDirection;
         this.units = _units;
@@ -142,7 +140,6 @@ class Weather {
         field = field * 2.236936;
         return field;
     }
-
 }
 
 export { WeatherServices }
