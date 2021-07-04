@@ -8,7 +8,7 @@
 }
 
 .input-group {
-    width: auto!important;
+    width: 301px!important;
 }
 
 #city-name {
@@ -23,7 +23,6 @@
     margin-bottom: 0px;
 }
 
-
 #temp-card-image {
     width: 120px;
 }
@@ -36,7 +35,6 @@
 #sun-card-spinner-container, #sun-card-spinner-container, #wind-card-spinner-container {
     height: 206px;
 }
-
 
 .spinner-grow {
     height: 40px;
